@@ -1,6 +1,8 @@
 # glossary-in-python
 A framework to create Dictionary in python. It can return transcription, definitions, links for pronunciation and examples for definitions of English words
 
+output.txt shows an example of output you can get using glossary-in-python
+
 ## Uses FREE DICTIONARY API
 https://dictionaryapi.dev/
 
