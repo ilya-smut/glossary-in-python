@@ -134,8 +134,8 @@ class Glossary:
         if self.status:
             string_for_output += f'-------------{self.word}------------\n'
 
-            #if 'transcription' in self.phonetic.keys():
-                #string_for_output += f'\nTranscription: {self.phonetic["transcription"]}\n'
+            if 'transcription' in self.phonetic.keys():
+                string_for_output += f'\nTranscription: {self.phonetic["transcription"]}\n'
             
             if 'audio' in self.phonetic.keys():
                 string_for_output += f'Pronunciation: {self.phonetic["audio"]}\n'
