@@ -77,10 +77,11 @@ class Glossary:
         
         if self.status:
             data = response[0]
-            self.phonetic['transcription'] = data['phonetic']
+            if 'phonetic' in data.keys():
+                self.phonetic['transcription'] = data['phonetic']
 
             for record in data['phonetics']:
-                if record['audio'] != '':
+                if record['audio'] != '' and len(record) != 0:
                     self.phonetic['audio'] = record['audio']
                     self.phonetic['transcription'] = record['text']
                     break
@@ -100,8 +101,13 @@ class Glossary:
     def print(self):
         if self.status:
             print(f'\n-------------{self.word}------------\n')
-            print('Transcription:', self.phonetic['transcription'])
-            print('Pronunciation:', self.phonetic['audio'])
+
+            if 'transcription' in self.phonetic.keys():
+                print('Transcription:', self.phonetic['transcription'])
+
+            if 'audio' in self.phonetic.keys():
+                print('Pronunciation:', self.phonetic['audio'])
+
             print()
             for part_of_speach in self.meanings.keys():
                 print('Part of speech:', part_of_speach.upper())
@@ -127,8 +133,12 @@ class Glossary:
         string_for_output = ''
         if self.status:
             string_for_output += f'-------------{self.word}------------\n'
-            #string_for_output += f'\nTranscription: {self.phonetic["transcription"]}\n'
-            string_for_output += f'Pronunciation: {self.phonetic["audio"]}\n'
+
+            #if 'transcription' in self.phonetic.keys():
+                #string_for_output += f'\nTranscription: {self.phonetic["transcription"]}\n'
+            
+            if 'audio' in self.phonetic.keys():
+                string_for_output += f'Pronunciation: {self.phonetic["audio"]}\n'
 
             for part_of_speach in self.meanings.keys():
                 string_for_output += f'\nPart of speech: {part_of_speach.upper()}\n'
