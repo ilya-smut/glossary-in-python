@@ -82,8 +82,10 @@ class Glossary:
 
             for record in data['phonetics']:
                 if record['audio'] != '' and len(record) != 0:
-                    self.phonetic['audio'] = record['audio']
-                    self.phonetic['transcription'] = record['text']
+                    if 'audio' in record.keys():
+                        self.phonetic['audio'] = record['audio']
+                    if 'text' in record.keys():
+                        self.phonetic['transcription'] = record['text']
                     break
             
 
